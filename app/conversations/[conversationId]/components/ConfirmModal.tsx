@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/app/components/button";
 import Modal from "@/app/components/Modal";
 import useConversation from "@/app/hooks/useConversation";
 import { Dialog, DialogTitle } from "@headlessui/react";
@@ -80,7 +81,35 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
                     >
                         Delete Conversation
                     </DialogTitle>
+                    <div className="mt-2">
+                        <p className="text-sm text-gray-500">
+                            Are you sure you want to delete this conversation?
+                        </p>
+                    </div>
                 </div>
+            </div>
+            <div 
+                className="
+                    mt-5
+                    sm:mt-4
+                    sm:flex
+                    sm:flex-row-reverse
+                "
+            >
+                <Button
+                    disabled = {isLoading}
+                    danger
+                    onClick={onDelete}
+                >
+                    Delete
+                </Button>
+                <Button
+                    disabled = {isLoading}
+                    secondary
+                    onClick={onClose}
+                >
+                    Cancel
+                </Button>
             </div>
         </Modal>
     );
