@@ -47,7 +47,18 @@ export async function POST(
                 }
             });
 
-            newConversation.users.forEach((user) => {
+            newConversation.users.forEach((user: {
+                id: string;
+                name: string | null;
+                email: string | null;
+                emailVerified: Date | null;
+                image: string | null;
+                hashedPassword: string | null;
+                createdAt: Date;
+                updatedAt: Date;
+                conversationIds: string[];
+                seenMessageIds: string[];
+            }) => {
                 if (user.email) {
                     pusherServer.trigger(user.email, 'conversation:new', newConversation);
                 }
@@ -97,7 +108,18 @@ export async function POST(
             }
         });
 
-        newConversation.users.map((user) => {
+        newConversation.users.map((user: {
+            id: string;
+            name: string | null;
+            email: string | null;
+            emailVerified: Date | null;
+            image: string | null;
+            hashedPassword: string | null;
+            createdAt: Date;
+            updatedAt: Date;
+            conversationIds: string[];
+            seenMessageIds: string[];
+        }) => {
             if(user.email){
                 pusherServer.trigger(user.email, 'conversation:new', newConversation);
             }
