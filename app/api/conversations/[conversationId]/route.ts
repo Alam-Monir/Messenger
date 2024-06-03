@@ -41,7 +41,7 @@ export async function DELETE(
             }
         });
 
-        existingConversation.users.forEach((user) => {
+        existingConversation.users.forEach((user: { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null; hashedPassword: string | null; createdAt: Date; updatedAt: Date; conversationIds: string[]; seenMessageIds: string[]; })  => {
             if (user.email){
                 pusherServer.trigger(user.email, 'conversation:remove', existingConversation);
             }
